@@ -23,11 +23,12 @@ public class HomePage extends AppCompatActivity
 
     MusicAdapter adapter;
 
+    // Main funtion
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page); // updated layout
+        super.onCreate(savedInstanceState);          // Setup
+        setContentView(R.layout.activity_home_page); // Selected Page xml
 
         recyclerView = findViewById(R.id.recyclerView);
         musicList = new ArrayList<>();
@@ -35,6 +36,7 @@ public class HomePage extends AppCompatActivity
         // Dummy data
         musicList.add(new Music("Song A"));
         musicList.add(new Music("Song B"));
+        musicList.add(new Music("Song C"));
 
         adapter = new MusicAdapter(musicList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -42,6 +44,7 @@ public class HomePage extends AppCompatActivity
     }
 
 
+    // Search Bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {

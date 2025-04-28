@@ -2,7 +2,7 @@ package app.main.upsaplayer;
 
 public class Music
 {
-    private String title;
+    private final String title;
 
     public Music(String title)
     {

@@ -18,6 +18,8 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>
     private List<Music> musicList;
     private List<Music> fullMusicList;
 
+
+    // Display each music
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
         public TextView musicTitle;
@@ -27,7 +29,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>
         {
             super(view);
             musicTitle = view.findViewById(R.id.musicTitle);
-            menuButton = view.findViewById(R.id.menu_button);
+            menuButton = view.findViewById(R.id.menu_button); // Three dots menu
         }
     }
 
@@ -39,6 +41,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>
         this.fullMusicList = new ArrayList<>(musicList);
     }
 
+    // Loads each music
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
@@ -55,6 +58,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>
 
         holder.menuButton.setOnClickListener(new View.OnClickListener()
         {
+            // Three dot menu
             @Override
             public void onClick(View v)
             {
