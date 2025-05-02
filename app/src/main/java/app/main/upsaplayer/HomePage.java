@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+
 import androidx.appcompat.widget.SearchView;
 
 
@@ -41,6 +43,52 @@ public class HomePage extends AppCompatActivity
         adapter = new MusicAdapter(musicList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
+
+        addMusic(findViewById(R.id.fab_add));
+    }
+
+
+    public void addMusic(View view)
+    {
+        view.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                // get current list
+                musicList = adapter.getMusicList();
+
+                // find the next number
+                int nextNumber = 1;
+                for (Music music : musicList)
+                {
+                    String title = music.getTitle();
+                    if (title.startsWith("Song ") && title.length() > 5)
+                    {
+                        try
+                        {
+                            int number = Integer.parseInt(title.substring(5));
+                            if (number >= nextNumber)
+                            {
+                                nextNumber = number + 1;
+                            }
+                        }
+                        catch (NumberFormatException e)
+                        {
+                            // ignore
+                        }
+                    }
+                }
+
+                // add new music
+                musicList.add(new Music("Song " + nextNumber));
+
+                // update adapter
+                adapter = new MusicAdapter(musicList);
+                recyclerView.setAdapter(adapter);
+            }
+        });
     }
 
 

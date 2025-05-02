@@ -13,6 +13,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>
 {
     private List<Music> musicList;
@@ -33,6 +35,9 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>
         }
     }
 
+
+    public List<Music> getMusicList() { return musicList; }
+    public List<Music> getFullMusicList() { return fullMusicList; }
 
 
     public MusicAdapter(List<Music> musicList)
