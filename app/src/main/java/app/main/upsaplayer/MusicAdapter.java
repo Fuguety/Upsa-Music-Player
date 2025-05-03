@@ -86,6 +86,9 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>
                         else if (id == R.id.add_to_playlist)
                         {
                             // Handle add to playlist
+
+                            AddMusicPlaylist addMusic = new AddMusicPlaylist(v.getContext(), holder.menuButton, PlaylistManager.getPlaylists());
+                            addMusic.addMusic(music);
                             return true;
                         }
                         else if (id == R.id.delete)

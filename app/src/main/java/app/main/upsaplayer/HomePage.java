@@ -49,6 +49,7 @@ public class HomePage extends AppCompatActivity
     }
 
 
+    // Add's music to the app
     public void addMusic(View view)
     {
         view.setOnClickListener(new View.OnClickListener()
