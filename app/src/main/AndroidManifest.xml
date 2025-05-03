@@ -28,6 +28,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".PlaylistsPage" />
+        <activity android:name=".PlaylistDetailPage" />
+
+
 
     </application>
 

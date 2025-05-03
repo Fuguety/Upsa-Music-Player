@@ -13,15 +13,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>
 {
     private List<Music> musicList;
     private List<Music> fullMusicList;
 
-
-    // Display each music
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
         public TextView musicTitle;
@@ -31,14 +27,12 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>
         {
             super(view);
             musicTitle = view.findViewById(R.id.musicTitle);
-            menuButton = view.findViewById(R.id.menu_button); // Three dots menu
+            menuButton = view.findViewById(R.id.menu_button);
         }
     }
 
-
     public List<Music> getMusicList() { return musicList; }
     public List<Music> getFullMusicList() { return fullMusicList; }
-
 
     public MusicAdapter(List<Music> musicList)
     {
@@ -46,7 +40,6 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>
         this.fullMusicList = new ArrayList<>(musicList);
     }
 
-    // Loads each music
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
@@ -63,7 +56,6 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>
 
         holder.menuButton.setOnClickListener(new View.OnClickListener()
         {
-            // Three dot menu
             @Override
             public void onClick(View v)
             {
@@ -80,26 +72,26 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>
 
                         if (id == R.id.rename)
                         {
-                            // Handle rename
+                            // TODO: Handle rename
                             return true;
                         }
                         else if (id == R.id.add_to_playlist)
                         {
-                            // Handle add to playlist
-
-                            AddMusicPlaylist addMusic = new AddMusicPlaylist(v.getContext(), holder.menuButton, PlaylistManager.getPlaylists());
+                            AddMusicPlaylist addMusic = new AddMusicPlaylist(
+                                    v.getContext(),
+                                    holder.menuButton,
+                                    PlaylistManager.getPlaylists()
+                            );
                             addMusic.addMusic(music);
                             return true;
                         }
                         else if (id == R.id.delete)
                         {
-                            // Handle delete
+                            // TODO: Handle delete
                             return true;
                         }
-                        else
-                        {
-                            return false;
-                        }
+
+                        return false;
                     }
                 });
 
@@ -108,10 +100,12 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>
         });
     }
 
-
     @Override
     public int getItemCount()
     {
         return musicList.size();
     }
+
+
+
 }

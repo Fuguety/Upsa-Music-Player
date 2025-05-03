@@ -3,6 +3,8 @@ package app.main.upsaplayer;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,7 +14,7 @@ import android.view.View;
 import androidx.appcompat.widget.SearchView;
 
 
-
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,8 +46,35 @@ public class HomePage extends AppCompatActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
+        // Bottom Nav
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnItemSelectedListener(item ->
+        {
+            int id = item.getItemId();
+
+            if (id == R.id.nav_playlists)
+            {
+                Intent playlistsIntent = new Intent(HomePage.this, PlaylistsPage.class);
+                startActivity(playlistsIntent);
+                return true;
+            }
+            else if (id == R.id.nav_home)
+            {
+                return true;
+            }
+            else if (id == R.id.nav_settings)
+            {
+                // TODO: Open settings activity
+                return true;
+            }
+
+            return false;
+        });
+
 
         addMusic(findViewById(R.id.fab_add));
+
     }
 
 
