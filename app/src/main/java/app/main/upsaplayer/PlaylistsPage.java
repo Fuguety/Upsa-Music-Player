@@ -9,6 +9,8 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,5 +45,18 @@ public class PlaylistsPage extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+        // Bottom Nav
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        //bottomNav.setSelectedItemId(R.id.playlist_list);
+
+        bottomNav.setOnItemSelectedListener(item -> {
+            NavigationHelper.navigate(this, item.getItemId());
+            return true;
+        });
+
+
+
+
     }
 }

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class PlaylistDetailPage extends AppCompatActivity
 {
     @Override
@@ -23,5 +25,18 @@ public class PlaylistDetailPage extends AppCompatActivity
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setAdapter(new MusicAdapter(playlist.getMusicList()));
         }
+
+
+
+        // Bottom Nav
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setSelectedItemId(R.id.nav_playlists); // Highlight page
+
+        bottomNav.setOnItemSelectedListener(item -> {
+            NavigationHelper.navigate(this, item.getItemId());
+            return true;
+        });
+
+
     }
 }
