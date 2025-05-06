@@ -17,6 +17,8 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>
 {
     private List<Music> musicList;
     private List<Music> fullMusicList;
+    private OnMusicClickListener listener;
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
@@ -34,10 +36,11 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>
     public List<Music> getMusicList() { return musicList; }
     public List<Music> getFullMusicList() { return fullMusicList; }
 
-    public MusicAdapter(List<Music> musicList)
+    public MusicAdapter(List<Music> musicList, OnMusicClickListener listener)
     {
         this.musicList = new ArrayList<>(musicList);
         this.fullMusicList = new ArrayList<>(musicList);
+        this.listener = listener;
     }
 
     @Override
@@ -65,6 +68,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>
 
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()
                 {
+
                     @Override
                     public boolean onMenuItemClick(MenuItem item)
                     {
@@ -93,11 +97,23 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>
 
                         return false;
                     }
+
                 });
 
                 popupMenu.show();
+
+
             }
         });
+
+        // play music clicked
+        holder.itemView.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) { listener.onMusicClick(position); }
+        });
+
+
     }
 
     @Override

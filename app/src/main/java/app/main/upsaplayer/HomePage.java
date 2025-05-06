@@ -26,6 +26,21 @@ public class HomePage extends AppCompatActivity
 
     MusicAdapter adapter;
 
+
+    // selects music and plays it
+    private final OnMusicClickListener musicClickListener = new OnMusicClickListener()
+    {
+        @Override
+        public void onMusicClick(int position)
+        {
+            MediaPlayerService.startPlayback(HomePage.this, musicList, position);
+        }
+    };
+
+
+
+
+
     // Main funtion
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,7 +56,9 @@ public class HomePage extends AppCompatActivity
         musicList.add(new Music("Song B"));
         musicList.add(new Music("Song C"));
 
-        adapter = new MusicAdapter(musicList);
+        adapter = new MusicAdapter(musicList,musicClickListener);
+
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
@@ -100,7 +117,7 @@ public class HomePage extends AppCompatActivity
                 musicList.add(new Music("Song " + nextNumber));
 
                 // update adapter
-                adapter = new MusicAdapter(musicList);
+                adapter = new MusicAdapter(musicList, null);
                 recyclerView.setAdapter(adapter);
             }
         });
@@ -140,7 +157,7 @@ public class HomePage extends AppCompatActivity
                     }
                 }
 
-                adapter = new MusicAdapter(filteredList);
+                adapter = new MusicAdapter(filteredList, musicClickListener); // shows the list and allows u to play it
                 recyclerView.setAdapter(adapter);
 
                 return true;

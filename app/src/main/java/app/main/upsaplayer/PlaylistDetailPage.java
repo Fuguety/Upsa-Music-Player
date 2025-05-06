@@ -9,6 +9,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class PlaylistDetailPage extends AppCompatActivity
 {
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -23,7 +25,15 @@ public class PlaylistDetailPage extends AppCompatActivity
 
             RecyclerView recyclerView = findViewById(R.id.playlist_music_list);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView.setAdapter(new MusicAdapter(playlist.getMusicList()));
+
+            recyclerView.setAdapter(new MusicAdapter(playlist.getMusicList(), new OnMusicClickListener()
+            {
+                @Override
+                public void onMusicClick(int position)
+                {
+                    MediaPlayerService.startPlayback(PlaylistDetailPage.this, playlist.getMusicList(), position);
+                }
+            }));
         }
 
 
