@@ -20,5 +20,15 @@
         app:menu="@menu/bottom_nav_menu" />
 
 
+    <!-- Player -->
+    <include
+        android:id="@+id/music_bar"
+        layout="@layout/music_play_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_navigation" />
+
+
+
 
 </RelativeLayout>

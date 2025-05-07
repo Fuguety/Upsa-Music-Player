@@ -55,6 +55,7 @@ public class PlaylistsPage extends AppCompatActivity
             return true;
         });
 
+        MediaPlayerService.bindBar(findViewById(R.id.music_bar)); // music bar
 
 
 

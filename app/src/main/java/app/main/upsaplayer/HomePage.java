@@ -23,7 +23,6 @@ public class HomePage extends AppCompatActivity
 {
     RecyclerView recyclerView;
     List<Music> musicList;
-
     MusicAdapter adapter;
 
 
@@ -76,6 +75,8 @@ public class HomePage extends AppCompatActivity
 
 
         addMusic(findViewById(R.id.fab_add));
+        MediaPlayerService.bindBar(findViewById(R.id.music_bar)); // music bar
+
 
     }
 
